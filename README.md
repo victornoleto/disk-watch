@@ -5,6 +5,7 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
+mkdir log
 ```
 
 # Configure webserver
@@ -16,7 +17,7 @@ cp .env.example .env
 ```
 [program:disk-watch]
 directory=/var/www/disk-watch
-command=/var/www/disk-watch/venv/bin/gunicorn app:app -b localhost:4040
+command=/var/www/disk-watch/venv/bin/gunicorn app:app -b 0.0.0.0:4040
 autostart=true
 autorestart=true
 stderr_logfile=/var/www/disk-watch/log/err.log
