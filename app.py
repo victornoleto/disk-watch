@@ -5,6 +5,8 @@ import datetime
 import json
 import os
 
+load_dotenv()
+
 # Flask constructor 
 app = Flask(__name__)
 
@@ -125,4 +127,5 @@ if __name__ == '__main__':
 	host = os.getenv('APP_HOST', '0.0.0.0')
 	port = os.getenv('APP_PORT', 5000)
 	debug = os.getenv('APP_DEBUG', True)
-	app.run(debug=True, host=host, port=port)
+	print(host, port, debug)
+	#app.run(debug=True, host=host, port=port)
