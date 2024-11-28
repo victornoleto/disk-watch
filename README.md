@@ -53,5 +53,5 @@ sudo service nginx restart
 `crontab -e`
 
 ```
-*/10 * * * * cd /var/www/disk-watch && /venv/bin/python3 watch.py
+*/10 * * * * cd /var/www/disk-watch && venv/bin/python3 watch.py
 ```
