@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+	<title>Chartjs Charts</title>
+</head>
+
+<body>
+
+	<h1>Disk Usage Chart</h1>
+
+	<form action="">
+
+		<div class="form-group">
+			<label for="">Start date</label>
+			<input type="date" name="start_date" value="{{ start_date }}" />
+		</div>
+
+		<div class="form-group">
+			<label for="">End date</label>
+			<input type="date" name="end_date" value="{{ end_date }}" />
+		</div>
+
+		<br/>
+		<div class="form-group">
+			<!-- loop disks and create input type checkbox -->
+			<label>Selected disks:</label>
+			{% for disk in disks %}
+				<div>
+					<input type="checkbox" name="disks[]" value="{{ disk }}" {% if disk in selected_disks %} checked {% endif %} />
+					<label for="">{{ disk }}</label>
+				</div>
+			{% endfor %}
+		</div>
+
+		<br/>
+		<button type="submit">Refresh</button>
+
+	</form>
+
+	<!-- draw chart if chart_config not None -->
+	{% if chart_config %}
+
+		<div style="height: 50vh; width: 50%;">
+			<canvas id="myChart"></canvas>
+		</div>
+
+		<script>
+
+			const config = {{ chart_config | tojson }};
+
+			const myChart = new Chart(
+				document.getElementById('myChart'),
+				config
+			);
+
+		</script>
+
+	{% endif %}
+
+</body>
+</html>
